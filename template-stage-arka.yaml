@@ -1,0 +1,8 @@
+    name_character: "[NAME_CHARACTER]"
+    avatar_character: "[AVATAR_CHARACTER]"
+    personality_character: |
+      [PERSONALITY_CHARACTER]
+    scenario_character: |
+      [SCENARIO_CHARACTER]
+    first_input_prompt: |
+      [PROMPT_CHARACTER] (You can leave empty if you want only as assitant AI)

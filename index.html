@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gg+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.14.0/css/OverlayScrollbars.min.css">
+    <title>Your Page Title</title>
+</head>
+
+<body>
+    <button id="debug-button" onclick="openDashboard()">Open Me!</button>
+    <div id="dashboard-ai">
+        <div id="dashboard-bar-menu">
+            <h3>CordAI</h3>
+            <div id="separator">
+
+            </div>
+            <button id="guide-user">
+                <svg x="0" y="0" class="icon_fc4f04" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="transparent" class=""></circle>
+                    <path fill="white" fill-rule="evenodd"
+                        d="M12 23a11 11 0 1 0 0-22 11 11 0 0 0 0 22Zm-.28-16c-.98 0-1.81.47-2.27 1.14A1 1 0 1 1 7.8 7.01 4.73 4.73 0 0 1 11.72 5c2.5 0 4.65 1.88 4.65 4.38 0 2.1-1.54 3.77-3.52 4.24l.14 1a1 1 0 0 1-1.98.27l-.28-2a1 1 0 0 1 .99-1.14c1.54 0 2.65-1.14 2.65-2.38 0-1.23-1.1-2.37-2.65-2.37ZM13 17.88a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0Z"
+                        clip-rule="evenodd" class=""></path>
+                </svg>
+            </button>
+            <button id="close-window" onclick="closeDashboard()">
+                <span>&#x2715;</span> <!-- The 'X' symbol will be white -->
+            </button>
+
+        </div>
+        <div id="dashboard-menu">
+            <div id="list-chat">
+                <div id="new-chat">
+                    <button id="button-chat" onclick="openChat()">
+                        <svg x="0" y="0" class="icon_fc4f04" aria-hidden="true" role="img"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path
+                                d="M19 14a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3h-3a1 1 0 1 1 0-2h3v-3a1 1 0 0 1 1-1Z"
+                                fill="currentColor" class=""></path>
+                            <path
+                                d="M20.76 12.57c.4.3 1.23.13 1.24-.37V12a10 10 0 1 0-18.44 5.36c.12.19.1.44-.04.61l-2.07 2.37A1 1 0 0 0 2.2 22h10c.5-.01.67-.84.37-1.24A3 3 0 0 1 15 16h.5a.5.5 0 0 0 .5-.5V15a3 3 0 0 1 4.76-2.43Z"
+                                fill="currentColor" class=""></path>
+                        </svg>
+                        <h3>New Chat</h3>
+                        <input type="file" id="file-input" style="display: none;" accept=".yaml"
+                            onchange="handleFileUpload(event)" />
+                    </button>
+                </div>
+                <div id="list-container-chat">
+                    <ul>
+                    </ul>
+                </div>
+                <div id="user-status">
+                    <img alt="User Avatar" id="user-avatar" width="48px" height="48px">
+                    <h4 id="user-name">Username</h4>
+                    <button id="setting-user">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <clipPath id="__lottie_element_101">
+                                    <rect width="24" height="24" x="0" y="0"></rect>
+                                </clipPath>
+                                <clipPath id="__lottie_element_103">
+                                    <path d="M0,0 L600,0 L600,600 L0,600z"></path>
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#__lottie_element_101)">
+                                <g clip-path="url(#__lottie_element_103)"
+                                    transform="matrix(0.03999999910593033,0,0,0.03999999910593033,0,0)" opacity="1"
+                                    style="display: block;">
+                                    <g transform="matrix(25,0,0,25,300,300)" opacity="1" style="display: block;">
+                                        <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+                                            <path fill="white" fill-opacity="1"
+                                                d=" M-1.4420000314712524,-10.906000137329102 C-1.8949999809265137,-10.847000122070312 -2.1470000743865967,-10.375 -2.078000068664551,-9.92300033569336 C-1.899999976158142,-8.756999969482422 -2.265000104904175,-7.7210001945495605 -3.061000108718872,-7.390999794006348 C-3.8570001125335693,-7.060999870300293 -4.8480000495910645,-7.534999847412109 -5.546000003814697,-8.484999656677246 C-5.816999912261963,-8.852999687194824 -6.329999923706055,-9.008999824523926 -6.691999912261963,-8.730999946594238 C-7.458000183105469,-8.142999649047852 -8.142999649047852,-7.458000183105469 -8.730999946594238,-6.691999912261963 C-9.008999824523926,-6.329999923706055 -8.852999687194824,-5.816999912261963 -8.484999656677246,-5.546000003814697 C-7.534999847412109,-4.8480000495910645 -7.060999870300293,-3.8570001125335693 -7.390999794006348,-3.061000108718872 C-7.7210001945495605,-2.265000104904175 -8.756999969482422,-1.899999976158142 -9.92300033569336,-2.078000068664551 C-10.375,-2.1470000743865967 -10.847000122070312,-1.8949999809265137 -10.906000137329102,-1.4420000314712524 C-10.968000411987305,-0.9700000286102295 -11,-0.48899999260902405 -11,0 C-11,0.48899999260902405 -10.968000411987305,0.9700000286102295 -10.906000137329102,1.4420000314712524 C-10.847000122070312,1.8949999809265137 -10.375,2.1470000743865967 -9.92300033569336,2.078000068664551 C-8.756999969482422,1.899999976158142 -7.7210001945495605,2.265000104904175 -7.390999794006348,3.061000108718872 C-7.060999870300293,3.8570001125335693 -7.534999847412109,4.8470001220703125 -8.484999656677246,5.546000003814697 C-8.852999687194824,5.816999912261963 -9.008999824523926,6.328999996185303 -8.730999946594238,6.691999912261963 C-8.142999649047852,7.458000183105469 -7.458000183105469,8.142999649047852 -6.691999912261963,8.730999946594238 C-6.329999923706055,9.008999824523926 -5.816999912261963,8.852999687194824 -5.546000003814697,8.484999656677246 C-4.8480000495910645,7.534999847412109 -3.8570001125335693,7.060999870300293 -3.061000108718872,7.390999794006348 C-2.265000104904175,7.7210001945495605 -1.899999976158142,8.756999969482422 -2.078000068664551,9.92300033569336 C-2.1470000743865967,10.375 -1.8949999809265137,10.847000122070312 -1.4420000314712524,10.906000137329102 C-0.9700000286102295,10.968000411987305 -0.48899999260902405,11 0,11 C0.48899999260902405,11 0.9700000286102295,10.968000411987305 1.4420000314712524,10.906000137329102 C1.8949999809265137,10.847000122070312 2.1470000743865967,10.375 2.078000068664551,9.92300033569336 C1.899999976158142,8.756999969482422 2.2660000324249268,7.7210001945495605 3.062000036239624,7.390999794006348 C3.8580000400543213,7.060999870300293 4.8480000495910645,7.534999847412109 5.546000003814697,8.484999656677246 C5.816999912261963,8.852999687194824 6.328999996185303,9.008999824523926 6.691999912261963,8.730999946594238 C7.458000183105469,8.142999649047852 8.142999649047852,7.458000183105469 8.730999946594238,6.691999912261963 C9.008999824523926,6.328999996185303 8.852999687194824,5.816999912261963 8.484999656677246,5.546000003814697 C7.534999847412109,4.8480000495910645 7.060999870300293,3.8570001125335693 7.390999794006348,3.061000108718872 C7.7210001945495605,2.265000104904175 8.756999969482422,1.899999976158142 9.92300033569336,2.078000068664551 C10.375,2.1470000743865967 10.847000122070312,1.8949999809265137 10.906000137329102,1.4420000314712524 C10.968000411987305,0.9700000286102295 11,0.48899999260902405 11,0 C11,-0.48899999260902405 10.968000411987305,-0.9700000286102295 10.906000137329102,-1.4420000314712524 C10.847000122070312,-1.8949999809265137 10.375,-2.1470000743865967 9.92300033569336,-2.078000068664551 C8.756999969482422,-1.899999976158142 7.7210001945495605,-2.265000104904175 7.390999794006348,-3.061000108718872 C7.060999870300293,-3.8570001125335693 7.534999847412109,-4.8480000495910645 8.484999656677246,-5.546000003814697 C8.852999687194824,-5.816999912261963 9.008999824523926,-6.329999923706055 8.730999946594238,-6.691999912261963 C8.142999649047852,-7.458000183105469 7.458000183105469,-8.142999649047852 6.691999912261963,-8.730999946594238 C6.328999996185303,-9.008999824523926 5.817999839782715,-8.852999687194824 5.546999931335449,-8.484999656677246 C4.848999977111816,-7.534999847412109 3.8580000400543213,-7.060999870300293 3.062000036239624,-7.390999794006348 C2.2660000324249268,-7.7210001945495605 1.9010000228881836,-8.756999969482422 2.0789999961853027,-9.92300033569336 C2.1480000019073486,-10.375 1.8949999809265137,-10.847000122070312 1.4420000314712524,-10.906000137329102 C0.9700000286102295,-10.968000411987305 0.48899999260902405,-11 0,-11 C-0.48899999260902405,-11 -0.9700000286102295,-10.968000411987305 -1.4420000314712524,-10.906000137329102z M4,0 C4,2.2090001106262207 2.2090001106262207,4 0,4 C-2.2090001106262207,4 -4,2.2090001106262207 -4,0 C-4,-2.2090001106262207 -2.2090001106262207,-4 0,-4 C2.2090001106262207,-4 4,-2.2090001106262207 4,0z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                    <div id="menu-user">
+                        <ul>
+                            <li>
+                                <button id="upload-avatar">
+                                    <h3>Upload Avatar</h3>
+                                    <input type="file" id="upload-avatar-input" style="display: none;"
+                                        accept=".png, .jpeg, .jpg, .webp" onchange="handleAvatar(event)" />
+                                </button>
+                            </li>
+                            <li>
+                                <button id="rename-user">
+                                    <h3>Change Username</h3>
+                                </button>
+                                <div id="method-username">
+                                    <input type="text" id="change-username" placeholder="Enter new username">
+                                    <div id="container-button-username">
+                                        <button id="save">
+                                            <h3>Save</h3>
+                                        </button>
+                                        <button id="cancel">
+                                            <h3>Cancel</h3>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="messages-chat-menu">
+                <div id="messages-chat-bar">
+                    <img src="arka2.jpg" alt="User Avatar" id="ai-avatar" width="48px" height="48px">
+                    <span class="offline-indicator"></span>
+                    <h3 id="ai-name"></h3>
+                    <button id="ai-setting">
+                        <svg class="icon_e986d9" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path fill="white" fill-rule="evenodd"
+                                d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                                clip-rule="evenodd" class=""></path>
+                        </svg>
+                    </button>
+                    <div id="menu-ai">
+                        <ul>
+                            <li>
+                                <button id="delete-message">
+                                    <h3 id="text-delete">Delete Message </h3>
+                                    <svg id="svg-delete" aria-hidden="true" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"
+                                            class=""></path>
+                                        <path fill-rule="evenodd"
+                                            d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z"
+                                            clip-rule="evenodd" class=""></path>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>
+                                <button id="delete-character">
+                                    <h3 id="text-delete-character">Delete Character</h3>
+                                    <svg id="svg-delete-character" x="0" y="0" class="icon_fc4f04" aria-hidden="true"
+                                        role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M14.5 8a3 3 0 1 0-2.7-4.3c-.2.4.06.86.44 1.12a5 5 0 0 1 2.14 3.08c.01.06.06.1.12.1ZM18.44 17.27c.15.43.54.73 1 .73h1.06c.83 0 1.5-.67 1.5-1.5a7.5 7.5 0 0 0-6.5-7.43c-.55-.08-.99.38-1.1.92-.06.3-.15.6-.26.87-.23.58-.05 1.3.47 1.63a9.53 9.53 0 0 1 3.83 4.78ZM12.5 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM2 20.5a7.5 7.5 0 0 1 15 0c0 .83-.67 1.5-1.5 1.5a.2.2 0 0 1-.2-.16c-.2-.96-.56-1.87-.88-2.54-.1-.23-.42-.15-.42.1v2.1a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2.1c0-.25-.31-.33-.42-.1-.32.67-.67 1.58-.88 2.54a.2.2 0 0 1-.2.16A1.5 1.5 0 0 1 2 20.5Z"
+                                            class=""></path>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="messages-chat-container">
+                    <div id="login">
+                        <form id="loginForm">
+                            <label for="authID">AuthID</label>
+                            <input type="text" id="authID" name="authID"
+                                placeholder="Ignore this field if is your first time.">
+
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required
+                                placeholder="Input your name for login/register.">
+
+                            <button type="submit">Login</button>
+                        </form>
+                    </div>
+                    <p id="warning">
+                        <strong>Warning:</strong> By logging to your account, you are responsible for the ethical use of
+                        AI. The use of this technology is at your own risk, and any misuse of it is your responsibility.
+                        Misuse could result in legal consequences.
+                    </p>
+                    <ul id="container-list">
+                    </ul>
+                </div>
+                <div id="message-input-bar">
+                    <button id="load-file">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="white"
+                                d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"
+                                class=""></path>
+                            <path fill="white"
+                                d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"
+                                class=""></path>
+                        </svg> </button>
+                    <textarea id="chat-input" placeholder="Type your message here..."></textarea>
+                    <button id="send-button">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="icon-2xl">
+                            <path id="send-icon" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M15.1918 8.90615C15.6381 8.45983 16.3618 8.45983 16.8081 8.90615L21.9509 14.049C22.3972 14.4953 22.3972 15.2189 21.9509 15.6652C21.5046 16.1116 20.781 16.1116 20.3347 15.6652L17.1428 12.4734V22.2857C17.1428 22.9169 16.6311 23.4286 15.9999 23.4286C15.3688 23.4286 14.8571 22.9169 14.8571 22.2857V12.4734L11.6652 15.6652C11.2189 16.1116 10.4953 16.1116 10.049 15.6652C9.60265 15.2189 9.60265 14.4953 10.049 14.049L15.1918 8.90615Z"
+                                fill="white"></path>
+                            <rect id="stop-icon" x="8" y="8" width="16" height="16" fill="white" style="display: none;">
+                            </rect>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+    <script>console.log(marked);</script>
+</body>
+
+</html>
